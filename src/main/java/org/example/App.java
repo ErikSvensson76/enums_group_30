@@ -12,8 +12,16 @@ public class App
     {
         WeekDay[] weekDays = WeekDay.values();
         for(WeekDay day : weekDays){
-            System.out.println(day);
+            day.setMessage("Closed");
         }
+
+        for(WeekDay day : weekDays){
+            System.out.println(day.getMessage());
+        }
+
+
+
+
 
         System.out.println(convertFromString("monday"));
     }
