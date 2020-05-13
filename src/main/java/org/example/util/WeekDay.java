@@ -1,25 +1,36 @@
 package org.example.util;
 
+import java.time.LocalTime;
+
 public enum WeekDay {
-    MONDAY("08:00 - 17:00"),
-    TUESDAY("07:00 - 18:30"),
-    WEDNESDAY("08:00 - 16:00"),
-    THURSDAY("07:00 - 19:00"),
-    FRIDAY("08:00 - 12:00"),
-    SATURDAY("Closed"),
-    SUNDAY("Closed");
+    MONDAY(LocalTime.parse("08:00"), LocalTime.parse("17:00")),
+    TUESDAY(LocalTime.parse("08:00"), LocalTime.parse("17:00")),
+    WEDNESDAY(LocalTime.parse("07:00"), LocalTime.parse("19:00")),
+    THURSDAY(LocalTime.parse("08:00"), LocalTime.parse("17:00")),
+    FRIDAY(LocalTime.parse("08:00"), LocalTime.parse("12:00")),
+    SATURDAY(null, null){
+        @Override
+        public String getDayInfo() {
+            return "We are closed";
+        }
+    },
+    SUNDAY(null, null){
+        @Override
+        public String getDayInfo() {
+            return "We are closed";
+        }
+    };
 
-    private String message;
+    LocalTime start;
+    LocalTime end;
 
-    WeekDay(String message){
-        this.message = message;
+    WeekDay(LocalTime start, LocalTime end) {
+        this.start = start;
+        this.end = end;
     }
 
-    public String getMessage(){
+    public String getDayInfo(){
+        String message = this.name() + ": opens at " + start+ " and closes at " + end;
         return message;
-    }
-
-    public void setMessage(String message){
-        this.message = message;
     }
 }
