@@ -12,7 +12,7 @@ public class App
     {
         WeekDay[] weekDays = WeekDay.values();
         for(WeekDay day : weekDays){
-            System.out.println(day.getDayInfo());
+            System.out.println(day.getOpeningDuration().toHours());
         }
 
 

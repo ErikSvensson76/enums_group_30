@@ -1,5 +1,6 @@
 package org.example.util;
 
+import java.time.Duration;
 import java.time.LocalTime;
 
 public enum WeekDay {
@@ -13,11 +14,21 @@ public enum WeekDay {
         public String getDayInfo() {
             return "We are closed";
         }
+
+        @Override
+        public Duration getOpeningDuration() {
+            return Duration.ZERO;
+        }
     },
     SUNDAY(null, null){
         @Override
         public String getDayInfo() {
             return "We are closed";
+        }
+
+        @Override
+        public Duration getOpeningDuration() {
+            return Duration.ZERO;
         }
     };
 
@@ -32,5 +43,10 @@ public enum WeekDay {
     public String getDayInfo(){
         String message = this.name() + ": opens at " + start+ " and closes at " + end;
         return message;
+    }
+
+    public Duration getOpeningDuration(){
+        Duration duration = Duration.between(start, end);
+        return duration;
     }
 }
